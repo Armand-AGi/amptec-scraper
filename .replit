@@ -1,0 +1,17 @@
+modules = ["python-3.12", "bash"]
+
+[nix]
+channel = "stable-25_05"
+packages = ["xcodebuild", "zlib"]
+
+[workflows]
+runButton = "Run Scraper"
+
+[[workflows.workflow]]
+name = "Run Scraper"
+author = 38830538
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python -m amptec_scraper --config configs/scraper.config.json"

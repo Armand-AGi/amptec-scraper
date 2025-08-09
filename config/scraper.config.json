@@ -1,0 +1,25 @@
+{
+  "base_url": "https://amptec.com",
+  "product_url_keywords": [
+    "product",
+    "catalog",
+    "shop",
+    "item"
+  ],
+  "max_concurrency": 1,
+  "delay_seconds": 2.0,
+  "timeout_seconds": 30,
+  "retry_attempts": 3,
+  "respect_robots": true,
+  "allowed_domains": [
+    "amptec.com"
+  ],
+  "output_dir": "data/products",
+  "force_overwrite": false,
+  "image_max_bytes": 50000000,
+  "scrapingbee": {
+    "use_premium_proxy": true,
+    "render_js": false,
+    "country_code": "us"
+  }
+}

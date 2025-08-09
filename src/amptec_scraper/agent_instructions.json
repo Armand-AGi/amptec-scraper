@@ -1,0 +1,34 @@
+{
+  "name": "amptec_product_scraper_module",
+  "purpose": "Crawl amptec.com, detect product pages, extract structured metadata, and download images into per-product folders with metadata.json.",
+  "entrypoint": "python -m amptec_scraper --base-url https://amptec.com --out data/products --concurrency 6",
+  "inputs": {
+    "base_url": "Root URL to crawl. Default: https://amptec.com",
+    "out": "Output directory for product folders. Default: data/products",
+    "concurrency": "Parallel HTTP requests. Default: 6",
+    "timeout": "HTTP timeout in seconds. Default: 30",
+    "config": "Optional JSON config path. Default: configs/scraper.config.json"
+  },
+  "outputs": {
+    "product_folder": "data/products/<slug>/",
+    "metadata_file": "data/products/<slug>/metadata.json",
+    "images": "Saved in the same folder as metadata.json",
+    "summary": "data/products/_summary.json"
+  },
+  "success_criteria": [
+    "Each product has its own folder named by slug",
+    "metadata.json includes title, sku, price, description_html, description_text, breadcrumbs, images, source_url",
+    "All referenced images are saved locally and listed under saved_images"
+  ],
+  "operational_constraints": [
+    "Respect robots.txt and site ToS",
+    "Implement polite rate limiting",
+    "Retry on transient HTTP errors",
+    "Skip already-scraped products unless force mode is added"
+  ],
+  "extensibility": [
+    "Swap heuristics with site-specific CSS selectors if desired",
+    "Add Playwright driver if pages are JS-rendered",
+    "Add sitemap.xml parsing to speed discovery"
+  ]
+}
